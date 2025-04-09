@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Z-NEXUS Redirect</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Orbitron', sans-serif;
+      color: #00ffea;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 1rem;
+      background-color: rgba(20, 20, 20, 0.7);
+      border: 1px solid rgba(0, 255, 234, 0.1);
+      box-shadow: 0 0 10px rgba(0, 255, 234, 0.1);
+    }
+
+    .countdown {
+      font-size: 5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #00ffe0;
+      text-shadow: 0 0 8px rgba(0, 255, 234, 0.2);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .message {
+      font-size: 1.2rem;
+      color: #aafaf5;
+      margin-top: 10px;
+      height: 2rem;
+      transition: opacity 0.4s ease-in-out;
+    }
+  </style>
+
+  <script>
+    let timeLeft = 30;
+    const messages = [
+      "Initiating Z-NEXUS access protocol...",
+      "Gearing up... Redirecting you to innovation!",
+      "Almost there! Taking you to the world of ideas...",
+      "🔹 Minimal & Clean: Hang tight, taking you there...",
+      "One moment please..."
+    ];
+    let messageIndex = 0;
+
+    function updateCountdown() {
+      const countdownEl = document.getElementById("countdown");
+      if (timeLeft >= 0) {
+        countdownEl.textContent = timeLeft;
+        timeLeft--;
+      } else {
+        window.location.href = "https://nexora25.vercel.app/";
+      }
+    }
+
+    function rotateMessages() {
+      const messageEl = document.getElementById("message");
+      messageEl.style.opacity = 0;
+      setTimeout(() => {
+        messageEl.textContent = messages[messageIndex];
+        messageEl.style.opacity = 1;
+        messageIndex = (messageIndex + 1) % messages.length;
+      }, 300);
+    }
+
+    window.onload = () => {
+      updateCountdown();
+      rotateMessages();
+      setInterval(updateCountdown, 1000);
+      setInterval(rotateMessages, 4000);
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div id="countdown" class="countdown">30</div>
+    <div id="message" class="message">Initiating Z-NEXUS access protocol...</div>
+  </div>
+</body>
+</html>
